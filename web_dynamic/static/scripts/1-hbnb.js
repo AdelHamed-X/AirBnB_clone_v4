@@ -5,19 +5,21 @@ $(document).ready(function () {
     let amenityId = $(this).data('id');
     let amenityName = $(this).data('name');
 
-    if ($(this).is(':checked')) {
+    if (this.checked) {
       checkedAmenities[amenityId] = amenityName;
     } else {
       delete checkedAmenities[amenityId];
     }
 
-    let amenities_list = Object.values(checkedAmenities);
+    let amenities_list = [];
+    amenities_list.push(Object.values(checkedAmenities).join(', '));
 
-    if (checkedAmenities.length > 0) {
-      $('div.amenities > h4').text(amenities_list.join(', '));
+    if (amenities_list.length > 0) {
+      $('div.amenities > h4').text(amenities_list);
     } else {
       $('div.amenities > h4').html('&nbsp;');
     }
     console.log(checkedAmenities);
+    console.log(amenities_list);
   });
 });
