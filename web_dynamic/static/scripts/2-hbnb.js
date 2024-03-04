@@ -22,4 +22,15 @@ $(document).ready(function () {
     console.log(checkedAmenities);
     console.log(amenities_list);
   });
+
+  $.get('http://0.0.0.0:5001/api/v1/status/', function (res, textStatus) {
+    console.log(textStatus, res.statusCode);
+    if (textStatus === "success") {
+      if (res.status === "OK") {
+        $('div#api_status').addClass('available');
+      } else {
+        $('div#api_status').removeClass('available');
+      }
+    }
+  });
 });
